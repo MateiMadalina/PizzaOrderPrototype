@@ -2,7 +2,7 @@ const allergens = [
     {
         "id": 1,
         "name": "gluten"
-    }, 
+    },
     {
         "id": 2,
         "name": "crustaceans"
@@ -36,3 +36,5 @@ const allergens = [
         "name": "mustard"
     }
 ]
+
+module.exports = { allergens }
