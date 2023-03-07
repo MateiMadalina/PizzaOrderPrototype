@@ -103,6 +103,7 @@ const deleteAllergens = () => {
               </div>
               `
             );
+            inputAllergens.value = "";
           }
         }
       });
