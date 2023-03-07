@@ -15,7 +15,6 @@ const data = async () => {
     const allResult = await allergens()
     console.log(result)
     console.log(allResult)
-    return
 }
 
 data()
