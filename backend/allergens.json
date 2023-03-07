@@ -1,4 +1,4 @@
-const allergens = [
+{ "allergens": [
     {
         "id": 1,
         "name": "gluten"
@@ -36,5 +36,4 @@ const allergens = [
         "name": "mustard"
     }
 ]
-
-module.exports = { allergens }
+}
