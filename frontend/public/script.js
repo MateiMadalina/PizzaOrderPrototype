@@ -36,33 +36,31 @@ const data = async () => {
   console.log(databasePizza);
   console.log(databaseAllergens);
 
-  const pizzaMap = databasePizza.map((element) => {
-    const allergensMap = databaseAllergens.map((allergen) => {
-      const idAllergens = element.allergens.map((id) => {
-        // if (id === allergen.id) {
-        //     return `<li>${allergen.name}</li>`
-        // }
-        return id === allergen.id ? `<li>${allergen.name}</li>` : null;
-      });
+  const pizzaMap = databasePizza.map(element => {
+    const allergensMap = databaseAllergens.map(allergen => {
+        const idAllergens = element.allergens.map(id => {
+            // if (id === allergen.id) {
+            //     return `<li>${allergen.name}</li>`
+            // } 
+            return id === allergen.id ? `<li id="allergen">${allergen.name}</li>` : null
+        })
 
-      return idAllergens.join("");
-    });
-    const ingredientsArray = element.ingredients.map((ingredient) => {
-      return `<li>${ingredient}</li>`;
-    });
+        return idAllergens.join("")
+    })
+    const ingredientsArray = element.ingredients.map(ingredient => {
+        return `<li id="ingredient">${ingredient}</li>`
+    }) 
     return `<h3 id="pizzaName">${element.name}</h3>
-                <img src="${element.photo}">
-                <h5>Ingredients:</h5>
-                <ul>${ingredientsArray.join("")}</ul>
-                <h4>${element.price}</h4>
-                <h5>Allergens</h5>
-                <h6>${allergensMap.join("")}</h6> `;
-  });
-  console.log(pizzaMap);
-  document
-    .querySelector("#pizzaList")
-    .insertAdjacentHTML("beforeend", pizzaMap.join(""));
-};
+            <img src="${element.photo}">
+            <h5>Ingredients:</h5>
+            <ul id="allIngredients">${ingredientsArray.join("")}</ul>
+            <h5 id="price">Price: ${element.price} €</h5>
+            <h5>Allergens</h5>
+            <h6 id="allAlergens">${allergensMap.join("")}</h6> `
+})
+console.log(pizzaMap)
+document.querySelector("#pizzaList").insertAdjacentHTML("beforeend", pizzaMap.join(""))
+}
 
 data();
 
