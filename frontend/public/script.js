@@ -1,3 +1,9 @@
+const rootEl = document.querySelector("#root");
+rootEl.insertAdjacentHTML("beforeend", `
+<div id="pizzaList">
+<h1>Pizza Menu</h1>
+</div>
+`)
 const pizza = async () => {
     const response = await fetch("http://127.0.0.1:9002/api/pizza");
     const allPizza = await response.json()
@@ -17,4 +23,4 @@ const data = async () => {
     console.log(allResult)
 }
 
-data()
+data();
