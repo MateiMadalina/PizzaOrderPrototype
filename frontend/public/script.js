@@ -1,3 +1,4 @@
+const allergensArr = [];
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -33,35 +34,36 @@ const allergens = async () => {
 const data = async () => {
   const databasePizza = await pizza();
   const databaseAllergens = await allergens();
-  console.log(databasePizza);
-  console.log(databaseAllergens);
+  console.log(allergensArr);
+  if (allergensArr.length === 0) {
+    const pizzaMap = databasePizza.map((element) => {
+      const allergensMap = databaseAllergens.map((allergen) => {
+        const idAllergens = element.allergens.map((id) => {
+          return id === allergen.id
+            ? `<li id="allergen">${allergen.name}</li>`
+            : null;
+        });
 
-  const pizzaMap = databasePizza.map(element => {
-    const allergensMap = databaseAllergens.map(allergen => {
-        const idAllergens = element.allergens.map(id => {
-            // if (id === allergen.id) {
-            //     return `<li>${allergen.name}</li>`
-            // } 
-            return id === allergen.id ? `<li id="allergen">${allergen.name}</li>` : null
-        })
-
-        return idAllergens.join("")
-    })
-    const ingredientsArray = element.ingredients.map(ingredient => {
-        return `<li id="ingredient">${ingredient}</li>`
-    }) 
-    return `<h3 id="pizzaName">${element.name}</h3>
+        return idAllergens.join("");
+      });
+      const ingredientsArray = element.ingredients.map((ingredient) => {
+        return `<li id="ingredient">${ingredient}</li>`;
+      });
+      return `<h3 id="pizzaName">${element.name}</h3>
             <img src="${element.photo}">
             <h5>Ingredients:</h5>
             <ul id="allIngredients">${ingredientsArray.join("")}</ul>
             <h5 id="price">Price: ${element.price} €</h5>
             <h5>Allergens</h5>
-            <h6 id="allAlergens">${allergensMap.join("")}</h6> `
-})
-console.log(pizzaMap)
-document.querySelector("#pizzaList").insertAdjacentHTML("beforeend", pizzaMap.join(""))
+            <h6 id="allAlergens">${allergensMap.join("")}</h6> `;
+    });
+    document
+      .querySelector("#pizzaList")
+      .insertAdjacentHTML("beforeend", pizzaMap.join(""));
+  } else {
+      
+  }
 }
-
 data();
 
 const createOptions = async (arr) => {
@@ -84,7 +86,8 @@ const deleteAllergens = () => {
   };
 
   inputAllergens.addEventListener("input", async () => {
-    const databaseAllergens = await allergens();
+      const databaseAllergens = await allergens();
+      
     datalistAlg.innerHTML = "";
     if (inputAllergens.value.length > 0) {
       let allergenNames = databaseAllergens.filter((elem) =>
@@ -93,7 +96,8 @@ const deleteAllergens = () => {
       createOptions(allergenNames);
       allergenNames.map((elem) => {
         if (detailsAllergens.innerHTML.includes(elem.name)) {
-          if (elem.name === inputAllergens.value) {
+            if (elem.name === inputAllergens.value) {
+              allergensArr.push(elem.name)
             detailsAllergens.insertAdjacentHTML(
               "afterbegin",
               `
@@ -113,7 +117,8 @@ const deleteAllergens = () => {
     //      row.remove();
     //   });
     }
-    deleteAllergens();
+      deleteAllergens();
+      data();
   });
 
 
