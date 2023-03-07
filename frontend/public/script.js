@@ -77,9 +77,6 @@ const deleteAllergens = () => {
       if (!button.hasEventListener) {
         button.hasEventListener = true;
         button.addEventListener("click", (e) => {
-          let index = arrayBtnX.indexOf(button);
-          console.log(index);
-          //savePackage.dependencies.splice(index, 1);
           e.target.parentElement.remove();
         });
       }
@@ -109,6 +106,11 @@ const deleteAllergens = () => {
           }
         }
       });
+    //   const arr = [...detailsAllergens.querySelectorAll(".row")];
+    //   arr.forEach((row, i, arr) => {
+    //   if (!arr.slice(0, i).innerText.includes(row.innerText))
+    //      row.remove();
+    //   });
     }
     deleteAllergens();
   });
