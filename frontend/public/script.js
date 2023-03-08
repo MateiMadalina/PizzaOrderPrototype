@@ -52,13 +52,19 @@ const data = async () => {
       return `<li id="ingredient">${ingredient}</li>`;
     });
     return `<div id="divPizza">
-              <h3 id="pizzaName">${element.name}</h3>
-              <img src="${element.photo}">
-              <h5>Ingredients:</h5>
-              <ul id="allIngredients">${ingredientsArray.join("")}</ul>
+              <div id="namePicture">
+                <h3 id="pizzaName">${element.name}</h3>
+                <img src="${element.photo}">
+              </div>
+              <div id="ingredient">
+                <h5 id="h5ing">Ingredients:</h5>
+                <ul id="allIngredients">${ingredientsArray.join("")}</ul>
+              </div>
+              <div id="alergens">
+                <h5>Allergens</h5>
+                <h6 id="allAlergens">${allergensMap.join("")}</h6>
+              </div>
               <h5 id="price">Price: ${element.price} €</h5>
-              <h5>Allergens</h5>
-              <h6 id="allAlergens">${allergensMap.join("")}</h6>
             </div> `;
   });
   if (allergensArr.length === 0) {
