@@ -1,7 +1,7 @@
 let allergensArr = [];
 let pizzaNameArr = [];
 let filterPizza;
-let amountNumber = 0
+let amountNumber = 0;
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -55,7 +55,7 @@ const data = async () => {
     const ingredientsArray = element.ingredients.map((ingredient) => {
       return `<li id="ingredient">${ingredient}</li>`;
     });
-    return `<div id="divPizza">
+    return `<div id="divPizza" data-id="${element.id}">
               <div id="namePicture">
                 <h3 id="pizzaName">${element.name}</h3>
                 <img src="${element.photo}">
@@ -70,7 +70,7 @@ const data = async () => {
               </div>
               <h5 id="price">Price: ${element.price} €</h5>
               <button class="cart" id="addToCart">Add to cart</button>
-              <input type="number" id="amount" placeholder="Amount" min="1">
+              <input type="number"  class="amount"  placeholder="Amount" min="1">
             </div> `;
   });
   if (allergensArr.length === 0) {
@@ -86,8 +86,8 @@ const data = async () => {
     });
     console.log(a);
     menu.insertAdjacentHTML("beforeend", a.join(""));
-    }
-    addToCartFunction()
+  }
+  addToCartFunction();
 };
 data();
 
@@ -150,36 +150,51 @@ inputAllergens.addEventListener("input", async () => {
   data();
 });
 
+const cart = {};
 
 const addToCartFunction = () => {
-    const addToCart = document.querySelectorAll(".cart")
-    const arrayBtnAddToCart = [...addToCart]
-    const amountInput = document.querySelectorAll("#amount")
-    if (amountInput) {
-        amountInput.forEach((amount) => {
-            amount.addEventListener("input", () => {
-                arrayBtnAddToCart.forEach((button) => {
-                    if (!button.hasEventListener) {
-                        button.hasEventListener = true;
-                        button.addEventListener("click", (e) => {
-                            amountNumber += parseInt(amount.value, 10)
-                            console.log(amountNumber)
-                            amount.value = "";
-                            // const pizzaName =
-                            //     e.target.parentElement.querySelector("h3").textContent;
-                            // const pizzaNameIndex = pizzaNameArr.indexOf(pizzaName);
-                        })
-                    }
-                })
-                
-            })
-        })
-    }
+  const addToCart = document.querySelectorAll(".cart");
+  const amount = document.querySelectorAll(".amount");
+
+  addToCart.forEach((button, index) => {
+    button.addEventListener("click", (e) => {
     
-    
-    
-    
-}
+      const pizzaName =
+        e.target.parentElement.querySelector("#pizzaName").textContent;
+const pizzaId= e.target.parentElement.dataset.id 
+console.log(pizzaId);
+     const quantity = parseInt(amount[index].value);
+
+      if (!cart[pizzaName]) {
+        cart[pizzaName] = quantity;
+      } else {
+        cart[pizzaName] += quantity;
+      }
+
+      amountNumber += quantity;
+      document.getElementById("lblCartCount").textContent = amountNumber;
+
+      const price = parseFloat(
+        e.target.parentElement.querySelector("#price").textContent.split(" ")[1]
+      );
+
+      const totalPrice = price * quantity;
+
+      const pizzaItem = {
+        id: pizzaId,
+        name: pizzaName,
+        price: price,
+        quantity: quantity,
+        totalPrice: totalPrice,
+      };
+
+      console.log("Cart", cart, pizzaItem);
+   amount[index].value = "";
+    });
+   
+  });
+
+};
 
 //fac POST cu id-ul de la pizza pentru acel order
 //modal sau redirectionare catre o noua pagina pentru cos
