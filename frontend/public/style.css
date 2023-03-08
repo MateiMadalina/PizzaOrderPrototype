@@ -13,7 +13,7 @@ body {
 }
 #divPizza {
   width: 200px;
-  height: 600px;
+  height: 650px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -225,6 +225,7 @@ img {
 
 #addToCart{
     margin-top: 10px;
+    display: flex;
 }
 
 #addToCart {
@@ -255,4 +256,27 @@ img {
 
 #addToCart:not([disabled]):hover {
   box-shadow: 0 0 .70rem rgba(0, 0, 0, 0.5), -.125rem -.125rem 1rem rgba(239, 71, 101, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+}
+
+
+.badge {
+  padding-left: 9px;
+  padding-right: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+  background-color: #c67605;
+}
+#lblCartCount {
+    font-size: 12px;
+    background: #ff0000;
+    color: #fff;
+    padding: 0 5px;
+    vertical-align: top;
+    margin-left: 25px;
+    margin-top: -35px;
 }
