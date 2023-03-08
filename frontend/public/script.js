@@ -65,6 +65,7 @@ const data = async () => {
                 <h6 id="allAlergens">${allergensMap.join("")}</h6>
               </div>
               <h5 id="price">Price: ${element.price} €</h5>
+              <button id="addToCart">Add to cart</button>
             </div> `;
   });
   if (allergensArr.length === 0) {
