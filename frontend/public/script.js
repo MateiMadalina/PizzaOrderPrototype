@@ -1,4 +1,28 @@
 const allergensArr = [];
+
+const deleteAllergens = () => {
+  const buttonX = document.querySelectorAll(".buttonAll");
+  const arrayBtnX = [...buttonX];
+
+  arrayBtnX.forEach((button) => {
+    if (!button.hasEventListener) {
+      button.hasEventListener = true;
+
+      button.addEventListener("click", (e) => {
+        const allergenName =
+          e.target.parentElement.querySelector("p").textContent;
+        const allergenIndex = allergensArr.indexOf(allergenName);
+
+        allergensArr.splice(allergenIndex, 1);
+        console.log(allergenIndex);
+        e.target.parentElement.remove();
+      });
+    }
+  });
+};
+
+ 
+
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -33,6 +57,8 @@ const allergens = async () => {
 };
 
 const data = async () => {
+
+    console.log(allergensArr);
   const databasePizza = await pizza();
   const databaseAllergens = await allergens();
   const pizzaMap = databasePizza.map((element) => {
@@ -58,9 +84,13 @@ const data = async () => {
             <h6 id="allAlergens">${allergensMap.join("")}</h6> `;
   });
   if (allergensArr.length === 0) {
+deleteAllergens();
     menu.innerHTML = "";
     menu.insertAdjacentHTML("beforeend", pizzaMap.join(""));
-  } else {
+console.log(allergensArr);
+  } else if (allergensArr.length >0){
+    deleteAllergens();
+    console.log(allergensArr);
     menu.innerHTML = "";
        const filteredPizzas = pizzaMap.filter((pizza) => {
          const allergensList = pizza.match(/<li id="allergen">(.*?)<\/li>/g);
@@ -87,24 +117,6 @@ const createOptions = async (arr) => {
   );
 };
 
-const deleteAllergens = () => {
-  const buttonX = document.querySelectorAll(".buttonAll");
-  const arrayBtnX = [...buttonX];
-  arrayBtnX.forEach((button) => {
-    if (!button.hasEventListener) {
-      button.hasEventListener = true;
-      button.addEventListener("click", (e) => {
-      const allergenName =
-        e.target.parentElement.querySelector("p").textContent;
-      const allergenIndex = allergensArr.indexOf(allergenName);
-          allergensArr.splice(allergenIndex,1)
-          console.log(allergenIndex);
-          e.target.parentElement.remove();
-
-      });
-    }
-  });
-};
 
 inputAllergens.addEventListener("input", async () => {
   const databaseAllergens = await allergens();
@@ -132,15 +144,11 @@ inputAllergens.addEventListener("input", async () => {
         }
       }
     });
-    //   const arr = [...detailsAllergens.querySelectorAll(".row")];
-    //   arr.forEach((row, i, arr) => {
-    //   if (!arr.slice(0, i).innerText.includes(row.innerText))
-    //      row.remove();
-    //   });
     }
-             console.log(allergensArr);
-  deleteAllergens();
+    
+
   data();
+
 });
 
 //fac POST cu id-ul de la pizza pentru acel order
