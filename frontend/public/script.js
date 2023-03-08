@@ -1,5 +1,28 @@
-let allergensArr = [];
-let filterPizza;
+const allergensArr = [];
+
+const deleteAllergens = () => {
+  const buttonX = document.querySelectorAll(".buttonAll");
+  const arrayBtnX = [...buttonX];
+
+  arrayBtnX.forEach((button) => {
+    if (!button.hasEventListener) {
+      button.hasEventListener = true;
+
+      button.addEventListener("click", (e) => {
+        const allergenName =
+          e.target.parentElement.querySelector("p").textContent;
+        const allergenIndex = allergensArr.indexOf(allergenName);
+
+        allergensArr.splice(allergenIndex, 1);
+        console.log(allergenIndex);
+        e.target.parentElement.remove();
+      });
+    }
+  });
+};
+
+ 
+
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -34,9 +57,10 @@ const allergens = async () => {
 };
 
 const data = async () => {
+
+    console.log(allergensArr);
   const databasePizza = await pizza();
   const databaseAllergens = await allergens();
-
   const pizzaMap = databasePizza.map((element) => {
     const allergensMap = databaseAllergens.map((allergen) => {
       const idAllergens = element.allergens.map((id) => {
@@ -47,36 +71,44 @@ const data = async () => {
 
       return idAllergens.join("");
     });
+
     const ingredientsArray = element.ingredients.map((ingredient) => {
       return `<li id="ingredient">${ingredient}</li>`;
     });
-    return `<div id="divPizza">
-              <h3 id="pizzaName">${element.name}</h3>
-              <img src="${element.photo}">
-              <h5>Ingredients:</h5>
-              <ul id="allIngredients">${ingredientsArray.join("")}</ul>
-              <h5 id="price">Price: ${element.price} €</h5>
-              <h5>Allergens</h5>
-              <h6 id="allAlergens">${allergensMap.join("")}</h6>
-            </div> `;
+    return `<h3 id="pizzaName">${element.name}</h3>
+            <img src="${element.photo}">
+            <h5>Ingredients:</h5>
+            <ul id="allIngredients">${ingredientsArray.join("")}</ul>
+            <h5 id="price">Price: ${element.price} €</h5>
+            <h5>Allergens</h5>
+            <h6 id="allAlergens">${allergensMap.join("")}</h6> `;
   });
   if (allergensArr.length === 0) {
-    // console.log(pizzaMap);
+deleteAllergens();
     menu.innerHTML = "";
-
     menu.insertAdjacentHTML("beforeend", pizzaMap.join(""));
-  } else {
+console.log(allergensArr);
+  } else if (allergensArr.length >0){
+    deleteAllergens();
+    console.log(allergensArr);
     menu.innerHTML = "";
-    let a = [];
-    filterPizza = pizzaMap.map((pizza) => {
-      if (!allergensArr.some((alergy) => pizza.includes(alergy))) {
-        a.push(pizza);
-      }
-    });
-    console.log(a);
-    menu.insertAdjacentHTML("beforeend", a.join(""));
+       const filteredPizzas = pizzaMap.filter((pizza) => {
+         const allergensList = pizza.match(/<li id="allergen">(.*?)<\/li>/g);
+         for (let i = 0; i < allergensList.length; i++) {
+           const allergen = allergensList[i].match(
+             /<li id="allergen">(.*?)<\/li>/
+           )[1];
+           if (allergensArr.includes(allergen)) {
+             return false;
+           }
+         }
+         return true;
+       });
+
+    menu.insertAdjacentHTML("beforeend", filteredPizzas.join(""));
   }
 };
+
 data();
 
 const createOptions = async (arr) => {
@@ -85,25 +117,6 @@ const createOptions = async (arr) => {
   );
 };
 
-const deleteAllergens = () => {
-  const buttonX = document.querySelectorAll(".buttonAll");
-  const arrayBtnX = [...buttonX];
-  console.log(allergensArr);
-  arrayBtnX.forEach((button) => {
-    if (!button.hasEventListener) {
-      button.hasEventListener = true;
-      button.addEventListener("click", (e) => {
-        const allergenName =
-          e.target.parentElement.querySelector("p").textContent;
-        const allergenIndex = allergensArr.indexOf(allergenName);
-
-        allergensArr.splice(allergenIndex, 1);
-        e.target.parentElement.remove();
-        console.log(allergensArr);
-      });
-    }
-  });
-};
 
 inputAllergens.addEventListener("input", async () => {
   const databaseAllergens = await allergens();
@@ -117,25 +130,25 @@ inputAllergens.addEventListener("input", async () => {
     allergenNames.map((elem) => {
       if (detailsAllergens.innerHTML.includes(elem.name)) {
         if (elem.name === inputAllergens.value) {
-          if (!allergensArr.includes(elem.name)) {
-            allergensArr.push(elem.name);
-            detailsAllergens.insertAdjacentHTML(
-              "afterbegin",
-              `
+          allergensArr.push(elem.name);
+          detailsAllergens.insertAdjacentHTML(
+            "afterbegin",
+            `
               <div class="row">
               <button class="buttonAll">X</button>
               <p>${elem.name}</p>
               </div>
               `
-            );
-            inputAllergens.value = "";
-          }
+          );
+          inputAllergens.value = "";
         }
       }
     });
-  }
-  deleteAllergens();
+    }
+    
+
   data();
+
 });
 
 //fac POST cu id-ul de la pizza pentru acel order
