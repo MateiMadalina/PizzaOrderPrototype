@@ -22,6 +22,7 @@ const datalistAlg = document.getElementById("alg");
 const inputAllergens = document.getElementById("allergensSearch");
 const detailsAllergens = document.getElementById("detailsAllergens");
 const menu = document.getElementById("menu");
+
 const pizza = async () => {
   const response = await fetch("http://127.0.0.1:9002/api/pizza");
   const allPizza = await response.json();
@@ -61,9 +62,7 @@ const data = async () => {
             </div> `;
   });
   if (allergensArr.length === 0) {
-    // console.log(pizzaMap);
     menu.innerHTML = "";
-
     menu.insertAdjacentHTML("beforeend", pizzaMap.join(""));
   } else {
     menu.innerHTML = "";
@@ -96,8 +95,8 @@ const deleteAllergens = () => {
         const allergenName =
           e.target.parentElement.querySelector("p").textContent;
         const allergenIndex = allergensArr.indexOf(allergenName);
-
         allergensArr.splice(allergenIndex, 1);
+        data();
         e.target.parentElement.remove();
         console.log(allergensArr);
       });
