@@ -17,6 +17,10 @@ app.get(["/", "/pizza/list"], (req, res) =>
     res.sendFile(path.resolve(__dirname + "/../frontend/index.html"))
 );
 
+app.get(["/", "/pizza/order"], (req, res) =>
+    res.sendFile(path.resolve(__dirname + "/../frontend/index2.html"))
+);
+
 
 
 app.use("/public",express.static(path.resolve(`${__dirname}/../frontend/public`)));
