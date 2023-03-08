@@ -200,7 +200,8 @@ const addToCartFunction = () => {
 
 const redirectToCart = () => {
   buttonCart.addEventListener("click", () =>{
-console.log(cartArray);
+  console.log(cartArray);
+  window.location.href = `http://http://127.0.0.1:9002/pizza/order`;
   })
 }
 
