@@ -2,6 +2,7 @@ let allergensArr = [];
 let pizzaNameArr = [];
 let filterPizza;
 let amountNumber = 0;
+const cartArray = [];
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -23,7 +24,7 @@ rootEl.insertAdjacentHTML(
   </div>
 `
 );
-
+const buttonCart = document.querySelector("#buttonCart")
 const datalistAlg = document.getElementById("alg");
 const inputAllergens = document.getElementById("allergensSearch");
 const detailsAllergens = document.getElementById("detailsAllergens");
@@ -90,6 +91,7 @@ const data = async () => {
     menu.insertAdjacentHTML("beforeend", a.join(""));
   }
   addToCartFunction();
+  redirectToCart()
 };
 data();
 
@@ -163,9 +165,9 @@ const addToCartFunction = () => {
       const pizzaName =
       e.target.parentElement.querySelector("#pizzaName").textContent;
       const pizzaId = e.target.parentElement.dataset.id;
-      console.log(pizzaId);
-      const quantity = parseInt(amount[index].value);
 
+      const quantity = parseInt(amount[index].value);
+  
       if (!cart[pizzaName]) {
         cart[pizzaName] = quantity;
       } else {
@@ -181,7 +183,7 @@ const addToCartFunction = () => {
 
       const totalPrice = price * quantity;
 
-      const pizzaItem = {
+     const pizzaItem = {
         id: pizzaId,
         name: pizzaName,
         price: price,
@@ -189,11 +191,18 @@ const addToCartFunction = () => {
         totalPrice: totalPrice,
       };
 
-      console.log("Cart", cart, pizzaItem);
+      cartArray.push(pizzaItem)
+      // console.log("Cart", cart, pizzaItem);
       amount[index].value = "";
     });
   });
 };
+
+const redirectToCart = () => {
+  buttonCart.addEventListener("click", () =>{
+console.log(cartArray);
+  })
+}
 
 //fac POST cu id-ul de la pizza pentru acel order
 //modal sau redirectionare catre o noua pagina pentru cos
