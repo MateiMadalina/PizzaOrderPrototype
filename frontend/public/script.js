@@ -65,14 +65,11 @@ const data = async () => {
   } else {
     menu.innerHTML = "";
     let a = [];
-    pizzaMap.map((elem) => {
-      allergensArr.forEach((alg) => {
-        if (!elem.includes(alg)) {
-          a.push(elem);
-        }
-      });
-    });
-
+    pizzaMap.map(pizza => {
+      if(!allergensArr.some(alergy => pizza.includes(alergy))){
+        a.push(pizza);
+      }
+    })
     menu.insertAdjacentHTML("beforeend", a.join(""));
   }
 };
