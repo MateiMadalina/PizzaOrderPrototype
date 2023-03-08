@@ -7,8 +7,10 @@ rootEl.insertAdjacentHTML(
   "beforeend",
   `
   <div id="pizzaList">
-  <button style="font-size:24px" id="buttonCart" class="fa">&#xf07a;</button>
-  <span class='badge badge-warning' id='lblCartCount'>${amountNumber}</span>
+        <div id="cartConteiner">
+            <button style="font-size:24px" id="buttonCart" class="fa">&#xf07a;</button>
+            <span class='badge badge-warning' id='lblCartCount'>${amountNumber}</span>
+        </div>
         <h1>Pizza Menu</h1>
         <div id="sortAllergens">
             <h2 class="title">Choose your pizza without allergens:</h2>
@@ -158,12 +160,11 @@ const addToCartFunction = () => {
 
   addToCart.forEach((button, index) => {
     button.addEventListener("click", (e) => {
-    
       const pizzaName =
-        e.target.parentElement.querySelector("#pizzaName").textContent;
-const pizzaId= e.target.parentElement.dataset.id 
-console.log(pizzaId);
-     const quantity = parseInt(amount[index].value);
+      e.target.parentElement.querySelector("#pizzaName").textContent;
+      const pizzaId = e.target.parentElement.dataset.id;
+      console.log(pizzaId);
+      const quantity = parseInt(amount[index].value);
 
       if (!cart[pizzaName]) {
         cart[pizzaName] = quantity;
@@ -189,11 +190,9 @@ console.log(pizzaId);
       };
 
       console.log("Cart", cart, pizzaItem);
-   amount[index].value = "";
+      amount[index].value = "";
     });
-   
   });
-
 };
 
 //fac POST cu id-ul de la pizza pentru acel order
