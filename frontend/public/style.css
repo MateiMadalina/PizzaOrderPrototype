@@ -18,6 +18,8 @@ body{
 
 /* CSS */
 #divPizza {
+    width: 200px;
+    height: 800px;
   align-items: center;
   appearance: none;
   background-clip: padding-box;
