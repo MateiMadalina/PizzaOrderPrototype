@@ -1,4 +1,5 @@
-const allergensArr = [];
+let allergensArr = [];
+let filterPizza;
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
@@ -60,16 +61,20 @@ const data = async () => {
             </div> `;
   });
   if (allergensArr.length === 0) {
+    // console.log(pizzaMap);
     menu.innerHTML = "";
+    
     menu.insertAdjacentHTML("beforeend", pizzaMap.join(""));
   } else {
+   
     menu.innerHTML = "";
     let a = [];
-    pizzaMap.map(pizza => {
+   filterPizza= pizzaMap.map(pizza => {
       if(!allergensArr.some(alergy => pizza.includes(alergy))){
         a.push(pizza);
       }
     })
+                 console.log(a);
     menu.insertAdjacentHTML("beforeend", a.join(""));
   }
 };
@@ -84,11 +89,18 @@ const createOptions = async (arr) => {
 const deleteAllergens = () => {
   const buttonX = document.querySelectorAll(".buttonAll");
   const arrayBtnX = [...buttonX];
+  console.log(allergensArr);
   arrayBtnX.forEach((button) => {
     if (!button.hasEventListener) {
       button.hasEventListener = true;
       button.addEventListener("click", (e) => {
+                const allergenName =
+                  e.target.parentElement.querySelector("p").textContent;
+                const allergenIndex = allergensArr.indexOf(allergenName);
+
+                allergensArr.splice(allergenIndex, 1);
         e.target.parentElement.remove();
+        console.log(allergensArr);
       });
     }
   });
@@ -106,6 +118,7 @@ inputAllergens.addEventListener("input", async () => {
     allergenNames.map((elem) => {
       if (detailsAllergens.innerHTML.includes(elem.name)) {
         if (elem.name === inputAllergens.value) {
+            if(!allergensArr.includes(elem.name)){
           allergensArr.push(elem.name);
           detailsAllergens.insertAdjacentHTML(
             "afterbegin",
@@ -119,12 +132,8 @@ inputAllergens.addEventListener("input", async () => {
           inputAllergens.value = "";
         }
       }
+    }
     });
-    //   const arr = [...detailsAllergens.querySelectorAll(".row")];
-    //   arr.forEach((row, i, arr) => {
-    //   if (!arr.slice(0, i).innerText.includes(row.innerText))
-    //      row.remove();
-    //   });
   }
   deleteAllergens();
   data();
