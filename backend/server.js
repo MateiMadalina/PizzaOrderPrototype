@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/pizza", pizzaRoutes);
 app.use("/api/allergen", allergens);
 
-app.get(["/", "/order/pizza"], (req, res) =>
+app.get(["/", "/pizza/list"], (req, res) =>
     res.sendFile(path.resolve(__dirname + "/../frontend/index.html"))
 );
 app.use("/public",express.static(path.resolve(`${__dirname}/../frontend/public`)));
 
-app.listen(port, (_) => console.log(`http://127.0.0.1:${port}/order/pizza`));
+app.listen(port, (_) => console.log(`http://127.0.0.1:${port}/pizza/list`));
