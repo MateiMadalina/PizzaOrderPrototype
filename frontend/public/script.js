@@ -1,10 +1,14 @@
 let allergensArr = [];
+let pizzaNameArr = [];
 let filterPizza;
+let amountNumber = 0
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
   "beforeend",
   `
   <div id="pizzaList">
+  <button style="font-size:24px" id="buttonCart" class="fa">&#xf07a;</button>
+  <span class='badge badge-warning' id='lblCartCount'>${amountNumber}</span>
         <h1>Pizza Menu</h1>
         <div id="sortAllergens">
             <h2 class="title">Choose your pizza without allergens:</h2>
@@ -65,7 +69,8 @@ const data = async () => {
                 <h6 id="allAlergens">${allergensMap.join("")}</h6>
               </div>
               <h5 id="price">Price: ${element.price} €</h5>
-              <button id="addToCart">Add to cart</button>
+              <button class="cart" id="addToCart">Add to cart</button>
+              <input type="number" id="amount" placeholder="Amount" min="1">
             </div> `;
   });
   if (allergensArr.length === 0) {
@@ -81,7 +86,8 @@ const data = async () => {
     });
     console.log(a);
     menu.insertAdjacentHTML("beforeend", a.join(""));
-  }
+    }
+    addToCartFunction()
 };
 data();
 
@@ -144,4 +150,36 @@ inputAllergens.addEventListener("input", async () => {
   data();
 });
 
+
+const addToCartFunction = () => {
+    const addToCart = document.querySelectorAll(".cart")
+    const arrayBtnAddToCart = [...addToCart]
+    const amountInput = document.querySelectorAll("#amount")
+    if (amountInput) {
+        amountInput.forEach((amount) => {
+            amount.addEventListener("input", () => {
+                arrayBtnAddToCart.forEach((button) => {
+                    if (!button.hasEventListener) {
+                        button.hasEventListener = true;
+                        button.addEventListener("click", (e) => {
+                            amountNumber += parseInt(amount.value, 10)
+                            console.log(amountNumber)
+                            amount.value = "";
+                            // const pizzaName =
+                            //     e.target.parentElement.querySelector("h3").textContent;
+                            // const pizzaNameIndex = pizzaNameArr.indexOf(pizzaName);
+                        })
+                    }
+                })
+                
+            })
+        })
+    }
+    
+    
+    
+    
+}
+
 //fac POST cu id-ul de la pizza pentru acel order
+//modal sau redirectionare catre o noua pagina pentru cos
