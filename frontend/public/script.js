@@ -201,8 +201,10 @@ const addToCartFunction = () => {
 const redirectToCart = () => {
   buttonCart.addEventListener("click", () =>{
   console.log(cartArray);
-  window.location.href = `http://127.0.0.1:9002/pizza/order`;
+  console.log(amountNumber);
+  if(amountNumber > 0) window.location.href = `http://127.0.0.1:9002/pizza/order`;
   })
+
 }
 
 //fac POST cu id-ul de la pizza pentru acel order
