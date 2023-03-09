@@ -6,12 +6,15 @@ body {
   color:black;
   align-items: center;
   justify-content: center;
-  background: rgb(230,222,206);
-  background: radial-gradient(circle, rgba(230,222,206,0.3534663865546218) 0%, rgb(83, 47, 44) 100%);
+  background-image: url(backgroundorder.jpg);
+  background-attachment:fixed;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 h1, h2{
-  color: rgb(48, 4, 4);
+  color: rgb(241, 216, 196);
    text-shadow: 0 0 3px #ffffff, 0 0 5px #080809
 }
 
@@ -87,7 +90,7 @@ h1, h2{
 
 #divPizza:after {
   background-color: initial;
-  background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+  background-image: linear-gradient(#602c22 0, #0c0d0d 100%);
   bottom: 4px;
   content: "";
   display: block;
@@ -321,7 +324,7 @@ img {
 
 
 #buttonCart{
-    background: linear-gradient(to bottom right, #470a0a, #ffcf9d);
+    background: linear-gradient(to bottom right, #47250a, #ffcf9d);
     border: 0px;
     border-radius: 15%;
 }
