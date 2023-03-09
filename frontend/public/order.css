@@ -1,0 +1,61 @@
+body{
+     background: rgb(230,222,206);
+  background: radial-gradient(circle, rgba(230,222,206,0.3534663865546218) 0%, rgba(37,6,3,1) 100%);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+#pizzaList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#pizzaList div {
+  margin-bottom: 10px;
+}
+
+#totalPriceFromCart {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#order-form {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 250px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+
+}
+
+input[type="submit"] {
+  background-color: #d17717;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #8e8a3e;
+}

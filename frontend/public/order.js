@@ -5,7 +5,7 @@ let totalPriceFromCart = 0
 const rootEl = document.querySelector("#root");
 rootEl.insertAdjacentHTML(
     "beforeend",
-    `<p>Choosen pizzas:</p>
+    `<h1>Your Order:</h1>
   <div id = "pizzaList"></div>
   <form id="order-form">
   <label for="name">Name:</label>
@@ -33,7 +33,7 @@ for (const pizza of cartArray) {
     pizzaInputsEl.insertAdjacentHTML(
         "afterbegin",
         `<div>
-      <h4 id="pizzaAndQuantity">${pizza.name}: ${pizza.quantity}</h4>
+      <h4 id="pizzaAndQuantity">${pizza.name}: pieces: ${pizza.quantity}</h4>
     </div>`
     );
 }

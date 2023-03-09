@@ -7,33 +7,6 @@
           "id": "1",
           "name": "Pan Pizza",
           "price": 15,
-          "quantity": 1,
-          "totalPrice": 15
-        }
-      ],
-      "date": {
-        "year": 2023,
-        "month": 3,
-        "day": 9,
-        "hour": 11,
-        "minute": 58
-      },
-      "customer": {
-        "name": "sdvgs",
-        "email": "silvialupsa@gmail.com",
-        "address": {
-          "city": "bre",
-          "street": "rb"
-        }
-      }
-    },
-    {
-      "id": 2,
-      "pizzas": [
-        {
-          "id": "1",
-          "name": "Pan Pizza",
-          "price": 15,
           "quantity": 4,
           "totalPrice": 60
         },
@@ -41,8 +14,8 @@
           "id": "2",
           "name": "Gluten Free Pizza",
           "price": 17,
-          "quantity": 1,
-          "totalPrice": 17
+          "quantity": 2,
+          "totalPrice": 34
         }
       ],
       "date": {
@@ -50,14 +23,14 @@
         "month": 3,
         "day": 9,
         "hour": 12,
-        "minute": 1
+        "minute": 21
       },
       "customer": {
-        "name": "sdvgs",
-        "email": "silvialupsa@gmail.com",
+        "name": "Sinziana Babu",
+        "email": "Sinziana.babu@yahoo.com",
         "address": {
-          "city": "dv",
-          "street": "rb"
+          "city": "Babeni",
+          "street": "Stra"
         }
       }
     }
