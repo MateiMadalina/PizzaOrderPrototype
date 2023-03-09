@@ -1,23 +1,38 @@
-{"orders":
 {
- "id": 1,
-  "pizzas": [
-    {"id": 1, "amount": 2}
-  ],
-  "date": {
-    "year": 2022,
-   "month": 6,
-   "day": 7,
-   "hour": 18,
-   "minute": 47
-  },
-  "customer":{
-    "name": "John Doe",
-    "email": "jd@example.com",
-    "address": {
-      "city": "Palermo",
-      "street": "Via Appia 6"
+  "orders": [
+    {
+      "id": 1,
+      "pizzas": [
+        {
+          "id": "1",
+          "name": "Pan Pizza",
+          "price": 15,
+          "quantity": 6,
+          "totalPrice": 90
+        },
+        {
+          "id": "2",
+          "name": "Gluten Free Pizza",
+          "price": 17,
+          "quantity": 3,
+          "totalPrice": 51
+        }
+      ],
+      "date": {
+        "year": 2023,
+        "month": 3,
+        "day": 9,
+        "hour": 11,
+        "minute": 34
+      },
+      "customer": {
+        "name": "sdvgs",
+        "email": "silvialupsa@gmail.com",
+        "address": {
+          "city": "bre",
+          "street": "rb"
+        }
+      }
     }
-  }
-}
+  ]
 }
