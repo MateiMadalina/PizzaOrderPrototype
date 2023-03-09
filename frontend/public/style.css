@@ -267,6 +267,7 @@ img {
   flex-direction: row;
   text-align: center;
   margin-top: -10px;
+  color: rgb(241, 216, 196);
 }
 
 .buttonAll {
