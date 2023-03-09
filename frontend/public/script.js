@@ -210,7 +210,8 @@ const addToCartFunction = () => {
 const redirectToCart = () => {
   buttonCart.addEventListener("click", () => {
     console.log(cartArray);
-    console.log(amountNumber);
+      console.log(amountNumber);
+      result = []
     cartArray.forEach(function (a) {
       if (!this[a.name]) {
         this[a.name] = {

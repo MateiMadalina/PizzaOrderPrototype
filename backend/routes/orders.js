@@ -16,7 +16,6 @@ router.post("/", async (req, res) => {
   const readFile = fs.readFileSync(dataRoute);
   const data = JSON.parse(readFile);
   savedData = Object.assign({ id: data.orders.length + 1 }, req.body);
-  savedData = req.body;
   data.orders.push(savedData);
   await fs.promises.writeFile(dataRoute, JSON.stringify(data, null, 2));
   res.send(JSON.stringify(data));
