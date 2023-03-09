@@ -1,6 +1,7 @@
 let allergensArr = [];
 let pizzaNameArr = [];
 let filterPizza;
+let result = [];
 let amountNumber = 0;
 const cartArray = [];
 const rootEl = document.querySelector("#root");
@@ -210,13 +211,27 @@ const redirectToCart = () => {
   buttonCart.addEventListener("click", () => {
     console.log(cartArray);
     console.log(amountNumber);
+    cartArray.forEach(function (a) {
+      if (!this[a.name]) {
+        this[a.name] = {
+          id: a.id,
+          name: a.name,
+          price: a.price,
+          quantity: 0,
+          totalPrice: 0,
+        };
+        result.push(this[a.name]);
+      }
+      this[a.name].quantity += a.quantity;
+      this[a.name].totalPrice = a.price * this[a.name].quantity;
+    }, Object.create(null));
+    console.log(result);
     if (amountNumber > 0) {
-      localStorage.setItem("cart", JSON.stringify(cartArray));
+      localStorage.setItem("cart", JSON.stringify(result));
       window.location.href = `http://127.0.0.1:9002/pizza/order`;
     }
   });
 };
-
 //fac POST cu id-ul de la pizza pentru acel order
 //modal sau redirectionare catre o noua pagina pentru cos
     // export { cartArray };
