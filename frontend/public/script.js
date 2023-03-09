@@ -167,7 +167,7 @@ const addToCartFunction = () => {
       e.target.parentElement.querySelector("#pizzaName").textContent;
       const pizzaId = e.target.parentElement.dataset.id;
 
-      const quantity = parseInt(amount[index].value);
+      const quantity = parseInt(amount[index].value || 1);
   
       if (!cart[pizzaName]) {
         cart[pizzaName] = quantity;
