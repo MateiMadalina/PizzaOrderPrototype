@@ -198,14 +198,25 @@ const addToCartFunction = () => {
   });
 };
 
-const redirectToCart = () => {
-  buttonCart.addEventListener("click", () =>{
-  console.log(cartArray);
-  console.log(amountNumber);
-  if(amountNumber > 0) window.location.href = `http://127.0.0.1:9002/pizza/order`;
-  })
+// const redirectToCart = () => {
+//   buttonCart.addEventListener("click", () =>{
+//   console.log(cartArray);
+//   console.log(amountNumber);
+//   if(amountNumber > 0) window.location.href = `http://127.0.0.1:9002/pizza/order`;
+//   })
 
-}
+// }
+const redirectToCart = () => {
+  buttonCart.addEventListener("click", () => {
+    console.log(cartArray);
+    console.log(amountNumber);
+    if (amountNumber > 0) {
+      localStorage.setItem("cart", JSON.stringify(cartArray));
+      window.location.href = `http://127.0.0.1:9002/pizza/order`;
+    }
+  });
+};
 
 //fac POST cu id-ul de la pizza pentru acel order
 //modal sau redirectionare catre o noua pagina pentru cos
+    // export { cartArray };
