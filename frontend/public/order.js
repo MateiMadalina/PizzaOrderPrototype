@@ -1,5 +1,5 @@
 const cartArray = JSON.parse(localStorage.getItem("cart"));
-count = 0
+
 console.log(cartArray);
 let totalPriceFromCart = 0
 const rootEl = document.querySelector("#root");
@@ -44,7 +44,7 @@ form.addEventListener("submit", async (event) =>{
     event.preventDefault(); 
     console.log("submit")
     const pizzas = [];
-    count += 1
+   
     for (const pizza of cartArray) {
         const pizzaInput = form.elements[`pizza-${pizza.id}`];
         if (pizzaInput) {
@@ -56,7 +56,6 @@ form.addEventListener("submit", async (event) =>{
     }
 
     const order = {
-        id: count,
         pizzas: cartArray,
         date: {
             year: new Date().getFullYear(),
