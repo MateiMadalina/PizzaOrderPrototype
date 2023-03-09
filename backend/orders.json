@@ -1,38 +1,5 @@
 {
   "orders": [
-    {
-      "id": 1,
-      "pizzas": [
-        {
-          "id": "1",
-          "name": "Pan Pizza",
-          "price": 15,
-          "quantity": 4,
-          "totalPrice": 60
-        },
-        {
-          "id": "2",
-          "name": "Gluten Free Pizza",
-          "price": 17,
-          "quantity": 2,
-          "totalPrice": 34
-        }
-      ],
-      "date": {
-        "year": 2023,
-        "month": 3,
-        "day": 9,
-        "hour": 12,
-        "minute": 21
-      },
-      "customer": {
-        "name": "Sinziana Babu",
-        "email": "Sinziana.babu@yahoo.com",
-        "address": {
-          "city": "Babeni",
-          "street": "Stra"
-        }
-      }
-    }
+   
   ]
 }

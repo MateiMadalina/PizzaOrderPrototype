@@ -1,6 +1,5 @@
 body{
-     background: rgb(230,222,206);
-  background: radial-gradient(circle, rgba(230,222,206,0.3534663865546218) 0%, rgba(37,6,3,1) 100%);
+  background-image: url('https://pomodoropizza.co.za/wp-content/uploads/pizza-background.jpg%27');
 }
 
 #root {
@@ -10,10 +9,40 @@ body{
   margin-top: 50px;
 }
 
+#coverOrder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 600px;
+  margin-top: -35px;
+  margin-left: -350px;
+  background: rgba(237, 242, 237, 0.5);
+  text-align: center;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: rgb(48, 4, 4);
+  border: 1px solid #000000;
+  border-radius: 10%;
+  
+}
+
+h4{
+  margin-top: -20px;
+}
+
+#totalPriceFromCart {
+  margin-top: -20px;
+}
+
 #pizzaList {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 30px;
 }
 
 #pizzaList div {
@@ -27,7 +56,7 @@ body{
 }
 
 #order-form {
-  margin-top: 50px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,13 +71,16 @@ input[type="text"],
 input[type="email"] {
   width: 250px;
   padding: 10px;
-  margin-bottom: 15px;
   border-radius: 5px;
-
+  text-align: center;
+  font-family: "Roboto";
+  font-style: normal;
+  font-size: 12px;
+  line-height: 28px;
 }
 
 input[type="submit"] {
-  background-color: #d17717;
+  background-color:  rgb(48, 4, 4);
   color: white;
   padding: 10px 20px;
   border: none;
@@ -57,5 +89,13 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-  background-color: #8e8a3e;
+  background-color:rgb(157, 103, 76);
+}
+
+#placeOrder{
+  margin-bottom: 20px;
+}
+
+label{
+  margin-top: -20px;
 }
